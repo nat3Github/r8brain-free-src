@@ -3,6 +3,24 @@ const std = @import("std");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+    const update = @import("update");
+    const deps: []const update.GitDependency = &.{
+        .{
+            // update self
+            .url = "https://github.com/nat3Github/zig-lib-update",
+            .branch = "main",
+        },
+        .{
+            // update
+            .url = "https://github.com/nat3Github/zig-lib-pffft",
+            .branch = "zig",
+        },
+    };
+    if (update.updateDependencies(b, deps, .{
+        .name = "update",
+        .optimize = optimize,
+        .target = target,
+    })) return;
 
     const pffft_dep = b.dependency("pffft", .{ .optimize = optimize, .target = target });
     const pffft_mod = pffft_dep.module("pffft");
