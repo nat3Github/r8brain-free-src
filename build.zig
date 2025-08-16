@@ -1,5 +1,5 @@
 const std = @import("std");
-const update = @import("update");
+const update = @import("update_tool");
 const deps: []const update.GitDependency = &.{
     .{
         // update self

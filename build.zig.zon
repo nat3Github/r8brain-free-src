@@ -11,6 +11,10 @@
             .url = "git+https://github.com/nat3Github/zig-lib-pffft#74464378b993395ad2e10a328956ca6b61b85064",
             .hash = "pffft-0.0.0-7Tw5MduXAgANcggVutRqacT17TcLo6PhDsAqKm1atolU",
         },
+        .update_tool = .{
+            .url = "git+https://github.com/nat3Github/zig-lib-update#b1383fe265ce7636b374d09b23e6ef67ee4eb46b",
+            .hash = "update_tool-0.0.0-MwAI-RQUAAAyN5KtivKv0CvCYu_NLd-QRv515tb4xdQ0",
+        },
     },
     .paths = .{
         "build.zig.zon",
