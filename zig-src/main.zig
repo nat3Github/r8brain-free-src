@@ -1,7 +1,6 @@
 const std = @import("std");
 const print = std.debug.print;
 const ArrayList = std.ArrayList;
-
 const R8bResampler = @import("r8brain");
 pub fn main() !void {
     print("Zig r8brain-free-src Resampler Example (Simplified Main.zig)\n", .{});

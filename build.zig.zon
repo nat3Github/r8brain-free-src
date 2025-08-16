@@ -2,7 +2,11 @@
     .fingerprint = 0x7b56ea20dd0b689a,
     .name = .r8brain,
     .version = "0.0.0",
-    .dependencies = .{},
+    .dependencies = .{
+        .pffft = .{
+            .path = "../lib-pffft",
+        },
+    },
     .paths = .{
         "build.zig.zon",
         "build.zig",

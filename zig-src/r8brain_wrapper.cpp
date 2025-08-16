@@ -1,3 +1,4 @@
+#define R8B_PFFFT_DOUBLE 1
 #include "r8brain_wrapper.h"
 #include "../CDSPResampler.h" // Assuming this header defines CDSPResampler24
 #include <new> // For std::nothrow

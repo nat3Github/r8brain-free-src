@@ -1,12 +1,12 @@
 const std = @import("std");
-const c = @cImport({
-    @cInclude("r8brain_wrapper.h");
-});
+pub const c = @import("c");
+pub const pffft = @import("pffft");
 
 pub const R8bResampler = @This();
 
 handle: c.R8bResamplerHandle,
 pub fn init(input_rate: f64, output_rate: f64, max_input_frames_chunk: u32, req_trans_band: f64) !R8bResampler {
+    _ = pffft;
     const handle = c.r8b_create_resampler(input_rate, output_rate, @intCast(max_input_frames_chunk), req_trans_band);
     if (handle == null) {
         return error.ResamplerCreationFailed;
