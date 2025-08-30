@@ -4,8 +4,8 @@
     .version = "0.0.0",
     .dependencies = .{
         .pffft = .{
-            .url = "git+https://github.com/nat3Github/zig-lib-pffft#74464378b993395ad2e10a328956ca6b61b85064",
-            .hash = "pffft-0.0.0-7Tw5MduXAgANcggVutRqacT17TcLo6PhDsAqKm1atolU",
+            .url = "git+https://github.com/nat3Github/zig-lib-pffft#dd08cc94229826ee5c1ac7dcb99728e1fcc13a1c",
+            .hash = "pffft-0.0.0-7Tw5MeSXAgA2cEhsTj3q8bdTTIS6RqLN1ee4rkE2ugrq",
         },
         .update_tool = .{
             .url = "git+https://github.com/nat3Github/zig-lib-update#bc4cb4abf4de818606452e52e316cd6ed3b29675",
