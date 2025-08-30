@@ -6,11 +6,11 @@ const deps: []const update.GitDependency = &.{
         .url = "https://github.com/nat3Github/zig-lib-update",
         .branch = "main",
     },
-    .{
-        // update
-        .url = "https://github.com/nat3Github/zig-lib-pffft",
-        .branch = "zig",
-    },
+    // .{
+    //     // update pffft
+    //     .url = "https://github.com/nat3Github/zig-lib-pffft",
+    //     .branch = "zig",
+    // },
 };
 
 pub fn build(b: *std.Build) !void {
