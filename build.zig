@@ -13,7 +13,7 @@ const deps: []const update.GitDependency = &.{
     },
 };
 
-pub fn build(b: *std.Build) void {
+pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
     if (update.updateDependencies(b, deps, .{
@@ -67,21 +67,5 @@ pub fn build(b: *std.Build) void {
     // we include pffft through our dependency
     module.addImport("pffft", pffft_mod);
 
-    const exe = b.addExecutable(.{
-        .name = "r8brain-zig-example",
-        .root_source_file = b.path("zig-src/main.zig"),
-        .target = target,
-        .optimize = optimize,
-    });
-    exe.root_module.addImport("r8brain", module);
-    b.installArtifact(exe);
-
-    const run_cmd = b.addRunArtifact(exe);
-    run_cmd.step.dependOn(b.getInstallStep());
-
-    const run_step = b.step("run", "Run the example");
-    run_step.dependOn(&run_cmd.step);
-
-    const test_step = b.step("test", "Run unit tests");
-    test_step.dependOn(&exe.step);
+    try update.addTestFolder(b, "zig-src/tests", optimize, target, &.{.{ .mod = module, .name = "r8brain" }}, "test");
 }

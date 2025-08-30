@@ -2,6 +2,9 @@ const std = @import("std");
 const print = std.debug.print;
 const ArrayList = std.ArrayList;
 const R8bResampler = @import("r8brain");
+test {
+    try main();
+}
 pub fn main() !void {
     print("Zig r8brain-free-src Resampler Example (Simplified Main.zig)\n", .{});
     const input_rate: f64 = 44100.0;
@@ -38,6 +41,7 @@ pub fn main() !void {
     defer allocator.free(wbuff);
 
     const produced = try resampler.process(input.items, wbuff);
+    std.log.warn("produced: {}", .{produced.len});
     try output_frames.appendSlice(produced);
 
     print("Draining resampler for remaining output...\n", .{});
@@ -53,13 +57,12 @@ pub fn main() !void {
 
     // Display a few samples for verification
     print("\nFirst 10 output samples:\n", .{});
-    for (0..@min(10, output_frames.items.len)) |i| {
-        print("  [{d}]: {d:.4}\n", .{ i, output_frames.items[i] });
+    for (0..@min(10, input.items.len)) |i| {
+        print("  [{d}]: {d:.4}\n", .{ i, input.items[i] });
     }
-
-    print("\nLast 10 output samples (if available):\n", .{});
-    const start_idx = if (output_frames.items.len > 10) output_frames.items.len - 10 else 0;
-    for (start_idx..output_frames.items.len) |i| {
+    // Display a few samples for verification
+    print("\nFirst 10 output samples:\n", .{});
+    for (0..@min(10, output_frames.items.len)) |i| {
         print("  [{d}]: {d:.4}\n", .{ i, output_frames.items[i] });
     }
 }

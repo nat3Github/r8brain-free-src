@@ -8,8 +8,8 @@
             .hash = "pffft-0.0.0-7Tw5MduXAgANcggVutRqacT17TcLo6PhDsAqKm1atolU",
         },
         .update_tool = .{
-            .url = "git+https://github.com/nat3Github/zig-lib-update#b1383fe265ce7636b374d09b23e6ef67ee4eb46b",
-            .hash = "update_tool-0.0.0-MwAI-RQUAAAyN5KtivKv0CvCYu_NLd-QRv515tb4xdQ0",
+            .url = "git+https://github.com/nat3Github/zig-lib-update#bc4cb4abf4de818606452e52e316cd6ed3b29675",
+            .hash = "update_tool-0.0.0-MwAI-eoZAAAQ2ud9gn9neQM5EC8PKpF6_HRmRfPF9-OL",
         },
     },
     .paths = .{
