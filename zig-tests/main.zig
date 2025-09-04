@@ -16,7 +16,7 @@ pub fn main() !void {
 
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+    const alloc = gpa.allocator();
 
     // Create a resampler instance
     var resampler = try R8bResampler.init(input_rate, output_rate, max_input_frames_chunk, req_trans_band);
@@ -26,23 +26,23 @@ pub fn main() !void {
     print("  Latency (Integer): {d} samples\n", .{resampler.getLatency()});
     print("  Fractional Latency: {d:.4} samples\n", .{resampler.getLatencyFrac()});
     print("  Max Output Length for {d} input frames chunk: {d}\n", .{ max_input_frames_chunk, resampler.getMaxOutLen(@intCast(max_input_frames_chunk)) });
-    var output_frames = ArrayList(f32).init(allocator);
-    defer output_frames.deinit();
+    var output_frames = ArrayList(f32){};
+    defer output_frames.deinit(alloc);
 
-    var input = ArrayList(f32).init(allocator);
-    defer input.deinit();
+    var input = ArrayList(f32){};
+    defer input.deinit(alloc);
     for (0..44100) |i| {
         const t = @as(f64, @floatFromInt(i)) / input_rate;
         const sinef = @as(f32, @floatCast(std.math.sin(2 * std.math.pi * freq * t)));
-        try input.append(sinef);
+        try input.append(alloc, sinef);
     }
 
-    const wbuff = try allocator.alloc(f32, 44100 * 2);
-    defer allocator.free(wbuff);
+    const wbuff = try alloc.alloc(f32, 44100 * 2);
+    defer alloc.free(wbuff);
 
     const produced = try resampler.process(input.items, wbuff);
     std.log.warn("produced: {}", .{produced.len});
-    try output_frames.appendSlice(produced);
+    try output_frames.appendSlice(alloc, produced);
 
     print("Draining resampler for remaining output...\n", .{});
     while (true) {
@@ -50,7 +50,7 @@ pub fn main() !void {
         if (p.len == 0) {
             break; // No more output
         }
-        try output_frames.appendSlice(p);
+        try output_frames.appendSlice(alloc, p);
     }
 
     print("\nResampling complete. Total output frames collected: {d}\n", .{output_frames.items.len});

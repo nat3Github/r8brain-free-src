@@ -1,25 +1,20 @@
 const std = @import("std");
 const update = @import("update_tool");
-const deps: []const update.GitDependency = &.{
-    .{
-        // update self
-        .url = "https://github.com/nat3Github/zig-lib-update",
-        .branch = "main",
-    },
-    // .{
-    //     // update pffft
-    //     .url = "https://github.com/nat3Github/zig-lib-pffft",
-    //     .branch = "zig",
-    // },
-};
 
 pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
-    if (update.updateDependencies(b, deps, .{
-        .name = "update",
-        .optimize = optimize,
-        .target = target,
+    if (update.updateDependencies(b, &.{
+        .{
+            // update self
+            .url = "https://github.com/nat3Github/zig-lib-update",
+            .branch = "main",
+        },
+        // .{
+        //     // update pffft
+        //     .url = "https://github.com/nat3Github/zig-lib-pffft",
+        //     .branch = "zig",
+        // },
     })) return;
 
     const pffft_dep = b.dependency("pffft", .{ .optimize = optimize, .target = target });
@@ -67,5 +62,5 @@ pub fn build(b: *std.Build) !void {
     // we include pffft through our dependency
     module.addImport("pffft", pffft_mod);
 
-    try update.addTestFolder(b, "zig-src/tests", optimize, target, &.{.{ .mod = module, .name = "r8brain" }}, "test");
+    try update.addTestFolder(b, "zig-tests", optimize, target, &.{.{ .mod = module, .name = "r8brain" }}, "test");
 }

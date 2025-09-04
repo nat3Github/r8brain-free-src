@@ -2,6 +2,7 @@
     .fingerprint = 0x7b56ea20dd0b689a,
     .name = .r8brain,
     .version = "0.0.0",
+    .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .pffft = .{
             .path = "../lib-pffft",
@@ -11,8 +12,8 @@
         //     .hash = "pffft-0.0.0-7Tw5MeSXAgA2cEhsTj3q8bdTTIS6RqLN1ee4rkE2ugrq",
         // },
         .update_tool = .{
-            .url = "git+https://github.com/nat3Github/zig-lib-update#bc4cb4abf4de818606452e52e316cd6ed3b29675",
-            .hash = "update_tool-0.0.0-MwAI-eoZAAAQ2ud9gn9neQM5EC8PKpF6_HRmRfPF9-OL",
+            .url = "git+https://github.com/nat3Github/zig-lib-update#a0ef597d694e1d5f9752841cbf737095bb9c4cf9",
+            .hash = "update_tool-1.0.0-MwAI-VgaAAB2y3AVVByTm1A6kQhyGB-QzWhGObaJhaKY",
         },
     },
     .paths = .{
