@@ -4,6 +4,10 @@
     .version = "0.0.0",
     .minimum_zig_version = "0.15.1",
     .dependencies = .{
+        .update_tool = .{
+            .url = "git+https://github.com/nat3Github/zig-lib-update#a0ef597d694e1d5f9752841cbf737095bb9c4cf9",
+            .hash = "update_tool-1.0.0-MwAI-VgaAAB2y3AVVByTm1A6kQhyGB-QzWhGObaJhaKY",
+        },
         .pffft = .{
             .path = "../lib-pffft",
         },
@@ -11,10 +15,6 @@
         //     .url = "git+https://github.com/nat3Github/zig-lib-pffft#dd08cc94229826ee5c1ac7dcb99728e1fcc13a1c",
         //     .hash = "pffft-0.0.0-7Tw5MeSXAgA2cEhsTj3q8bdTTIS6RqLN1ee4rkE2ugrq",
         // },
-        .update_tool = .{
-            .url = "git+https://github.com/nat3Github/zig-lib-update#a0ef597d694e1d5f9752841cbf737095bb9c4cf9",
-            .hash = "update_tool-1.0.0-MwAI-VgaAAB2y3AVVByTm1A6kQhyGB-QzWhGObaJhaKY",
-        },
     },
     .paths = .{
         "build.zig.zon",
