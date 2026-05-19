@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/nat3/programming/zig/lib-r8brain",
+      "program": "/Users/nat3/programming/zig/lib-r8brain/build/Debug/outDebug"
+    }
+  ]
+}

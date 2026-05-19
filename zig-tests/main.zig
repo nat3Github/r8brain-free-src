@@ -2,10 +2,7 @@ const std = @import("std");
 const print = std.debug.print;
 const ArrayList = std.ArrayList;
 const R8bResampler = @import("r8brain");
-test {
-    try main();
-}
-pub fn main() !void {
+test "test generation" {
     print("Zig r8brain-free-src Resampler Example (Simplified Main.zig)\n", .{});
     const input_rate: f64 = 44100.0;
     const output_rate: f64 = 48000.0;
@@ -65,4 +62,15 @@ pub fn main() !void {
     for (0..@min(10, output_frames.items.len)) |i| {
         print("  [{d}]: {d:.4}\n", .{ i, output_frames.items[i] });
     }
+}
+
+test "test size" {
+    var gpa = std.heap.DebugAllocator(.{ .retain_metadata = true });
+    defer _ = gpa.deinit();
+    // const alloc = gpa.allocator();
+    const frames = 256;
+
+    const req_trans_band: f64 = 2.0;
+    var rs = try R8bResampler.init(44100, 48000, frames, req_trans_band);
+    defer rs.deinit();
 }
