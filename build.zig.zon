@@ -5,8 +5,7 @@
     .minimum_zig_version = "0.15.2",
     .dependencies = .{
         .update_tool = .{
-            .url = "git+https://github.com/nat3Github/zig-lib-update#c2cd0d18e2524b2136dbf716fa5384e1d3d71ef0",
-            .hash = "update_tool-1.0.0-MwAI-ZIbAAANtHogWlc1fXYzcMrhM0zDrb4KmvbUwxBG",
+            .path = "../lib-update",
         },
         .pffft = .{
             .path = "../lib-pffft",
